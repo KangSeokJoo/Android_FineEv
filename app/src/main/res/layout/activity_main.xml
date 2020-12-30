@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main.MainActivity"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:id="@+id/Full_Linear"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/actionbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintVertical_bias="0"
+        android:background="@drawable/button_back_blue"
+        android:gravity="center_vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/IbtnFindWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingRight="5dp"
+            android:paddingLeft="20dp"
+            >
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/icon_home_white"
+            />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCarInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- -  / - -"
+            android:textSize="18dp"
+            android:textColor="#ffffff"
+            android:minWidth="200dp"
+            android:maxWidth="200dp"
+            />
+        <LinearLayout
+            android:id="@+id/IbtnSetting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|center"
+            >
+            <LinearLayout
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/icon_setting_white"
+                android:layout_marginRight="15dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+<!--    상단 바-->
+
+
+        <!--    background-->
+        <TextView
+            android:id="@+id/tvMainName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/white_Linear"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.03"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <LinearLayout
+        android:layout_marginTop="15dp"
+        android:id="@+id/white_Linear"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:background="@drawable/button_back_white_circle"
+        app:layout_constraintTop_toBottomOf="@+id/tvMainName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal" >
+
+        <me.tankery.lib.circularseekbar.CircularSeekBar
+            android:id="@+id/circleSeekbar"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            app:cs_circle_color="#CCE0E8"
+            app:cs_circle_progress_color="@color/main_blue"
+            app:cs_circle_stroke_width="20dp"
+            app:cs_circle_style="square"
+            app:cs_disable_pointer="true"
+            app:cs_end_angle="0"
+            app:cs_maintain_equal_circle="true"
+            app:cs_progress="0"
+            app:cs_max = "50"
+            app:cs_start_angle="180" />
+    </LinearLayout>
+
+        <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-- : --"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/white_Linear"
+        app:layout_constraintLeft_toLeftOf="@id/white_Linear"
+        app:layout_constraintRight_toRightOf="@id/white_Linear"
+        app:layout_constraintBottom_toBottomOf="@id/white_Linear"
+        app:layout_constraintVertical_bias="0.1"
+    />
+
+    <TextView
+        android:id="@+id/tvStateOfCharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tvTimer"
+        app:layout_constraintLeft_toLeftOf="@id/white_Linear"
+        app:layout_constraintRight_toRightOf="@id/white_Linear"
+        app:layout_constraintBottom_toBottomOf="@id/white_Linear"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="6dp"
+        android:text="--.-"/>
+    
+    <TextView
+        android:id="@+id/tvStateOfCharge2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kWh"
+        app:layout_constraintTop_toBottomOf="@id/tvStateOfCharge"
+        app:layout_constraintLeft_toLeftOf="@id/white_Linear"
+        app:layout_constraintRight_toRightOf="@id/white_Linear"
+        app:layout_constraintBottom_toBottomOf="@id/white_Linear"
+        app:layout_constraintVertical_bias="0"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        />
+
+    <TextView
+        android:id="@+id/ImageMode"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:text="NORMAL MODE"
+        android:textSize="12dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_back_darkgray_corner"
+        app:layout_constraintTop_toBottomOf="@id/tvStateOfCharge2"
+        app:layout_constraintLeft_toLeftOf="@id/white_Linear"
+        app:layout_constraintRight_toRightOf="@id/white_Linear"
+        app:layout_constraintBottom_toBottomOf="@id/white_Linear"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tvMileage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ImageMode"
+        app:layout_constraintLeft_toLeftOf="@id/white_Linear"
+        app:layout_constraintRight_toRightOf="@id/white_Linear"
+        app:layout_constraintBottom_toBottomOf="@id/white_Linear"
+        app:layout_constraintVertical_bias="0"
+        android:text="+주행거리 0.0km 추가"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
+
+
+        <TextView
+            android:id="@+id/tvLeftTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="-- : --"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/white_Linear"
+            app:layout_constraintEnd_toStartOf="@+id/white_Linear"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="@+id/white_Linear"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/white_Linear"
+            app:layout_constraintTop_toTopOf="@+id/white_Linear" />
+
+        <TextView
+            android:id="@+id/tvRightTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="-- : --"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/white_Linear"
+            app:layout_constraintEnd_toEndOf="@+id/white_Linear"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/white_Linear"
+            app:layout_constraintStart_toEndOf="@+id/white_Linear"
+            app:layout_constraintTop_toTopOf="@+id/white_Linear" />
+
+    <TextView
+        android:id="@+id/tvBattery"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_battery"
+        android:text="600 kWh"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvMileage"
+        app:layout_constraintLeft_toLeftOf="@id/white_Linear"
+        app:layout_constraintRight_toRightOf="@id/white_Linear"
+        app:layout_constraintBottom_toBottomOf="@id/white_Linear"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="5dp"
+        android:textColor="#000000"
+        android:textSize="14dp"
+        />
+
+    <ImageView
+        android:id="@+id/ImageChargeState"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="@id/white_Linear"
+        app:layout_constraintRight_toRightOf="@id/white_Linear"
+        app:layout_constraintBottom_toBottomOf="@id/white_Linear"
+        app:layout_constraintTop_toBottomOf="@id/white_Linear"
+        android:background="@drawable/ic_st00"
+        android:elevation="1dp"
+        />
+
+
+
+
+        <Button
+            android:id="@+id/btnlinkChk"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_unconnect"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvV"
+            app:layout_constraintBottom_toBottomOf="@+id/tvV"
+            android:layout_marginLeft="15dp"
+            />
+    <TextView
+        android:id="@+id/tvV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" -- V"
+        android:textColor="#555555"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tvA"
+        app:layout_constraintTop_toBottomOf="@+id/ImageChargeState"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="15dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        />
+
+    <TextView
+        android:id="@+id/tvA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-- A"
+        android:textColor="#555555"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvV"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintLeft_toRightOf="@id/tvV"
+        app:layout_constraintRight_toLeftOf="@+id/tvC"
+        app:layout_constraintTop_toTopOf="@+id/tvV"
+        app:layout_constraintVertical_bias="0.75"
+        android:layout_marginLeft="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tvC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-- ˚C"
+        android:textColor="#555555"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvV"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintLeft_toRightOf="@+id/tvA"
+        app:layout_constraintRight_toLeftOf="@+id/tvError"
+        app:layout_constraintTop_toTopOf="@+id/tvV"
+        app:layout_constraintVertical_bias="0.75"
+        android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(ER001)"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tvV"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintLeft_toRightOf="@+id/tvC"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvV"
+            app:layout_constraintVertical_bias="0.75"
+            android:layout_marginLeft="15dp"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/btnShare"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="@drawable/btn_share1"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/main_recyclerView"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:textSize="23dp"-->
+<!--            />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvV"
+        app:layout_constraintVertical_bias="1"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="최근 충전 이력이 없습니다."
+        android:textSize="18dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/empty_list"
+        android:visibility="gone"
+        />
+    </FrameLayout>
+</LinearLayout>
+

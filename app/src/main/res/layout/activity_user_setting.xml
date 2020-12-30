@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:id="@+id/Full_Linear">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/actionbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/button_back_blue"
+        android:gravity="center_vertical|center"
+        >
+
+        <LinearLayout
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            android:gravity="center"
+            >
+
+            <LinearLayout
+                android:layout_width="10dp"
+                android:layout_height="22dp"
+                android:background="@drawable/icon_back" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용자 설정"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/IbtnSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            android:paddingLeft="30dp"
+            android:paddingRight="15dp"
+            android:gravity="center"
+            >
+
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_setting"
+            />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+
+<!--        사용자 모드-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:layout_marginTop="5dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사용자 모드"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginLeft="15dp"
+                    />
+                <Switch
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/SwitchUserMode"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#bdbdbd"
+            />
+<!--          Full Mode-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/FullModeLayout"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full Mode 활성화"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvFull2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/tvFullmode"
+            />
+
+        <TextView
+            android:id="@+id/tvFull2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="예약 충전 시에는 Full Mode를 활성화 하세요."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvFullmode"
+            app:layout_constraintTop_toBottomOf="@id/tvFullmode"
+            android:textColor="#555555"
+            />
+
+        <Switch
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="15dp"
+            android:id="@+id/SwitchFullMode"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        />
+<!--SmartMode-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/SmartModeLayout"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Smart Mode 활성화"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvSmart2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/tvSmartmode"
+            />
+
+        <TextView
+            android:id="@+id/tvSmart2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전력 상태에 따라 충전속도를 조절합니다. "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvSmartmode"
+            app:layout_constraintTop_toBottomOf="@id/tvSmartmode"
+            android:textColor="#555555"
+            />
+
+        <Switch
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="15dp"
+            android:id="@+id/SwitchSmartMode"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        />
+
+<!--    충전 전류 설정-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/VoltLayout"
+        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="충전 전류 설정"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/tvSetVolt"
+        />
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seekBarVolt"
+            android:layout_width="match_parent"
+            android:layout_height="23dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:max="6"
+            android:min="0"
+            android:progressDrawable="@drawable/seekbar_bar"
+            android:thumb="@drawable/seekbar_circle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSetVolt"
+            />
+
+        <TextView
+            android:id="@+id/a7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7A"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/seekBarVolt"
+            app:layout_constraintRight_toLeftOf="@id/a9"
+            app:layout_constraintStart_toStartOf="@+id/seekBarVolt"
+            app:layout_constraintTop_toBottomOf="@id/seekBarVolt"
+            android:layout_marginLeft="10dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9A"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekBarVolt"
+            app:layout_constraintLeft_toRightOf="@id/a7"
+            app:layout_constraintRight_toLeftOf="@id/a12"
+            android:id="@+id/a9"/>
+
+        <TextView
+            android:id="@+id/a12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12A"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/a9"
+            app:layout_constraintRight_toLeftOf="@id/a16"
+            app:layout_constraintTop_toBottomOf="@id/seekBarVolt" />
+
+        <TextView
+            android:id="@+id/a16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16A"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/a12"
+            app:layout_constraintRight_toLeftOf="@id/a20"
+            app:layout_constraintTop_toBottomOf="@id/seekBarVolt" />
+        <TextView
+        android:id="@+id/a20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20A"
+            android:textColor="#555555"
+            android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/a16"
+            app:layout_constraintRight_toLeftOf="@id/a25"
+        app:layout_constraintTop_toBottomOf="@id/seekBarVolt" />
+
+        <TextView
+            android:id="@+id/a25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25A"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/a20"
+            app:layout_constraintRight_toLeftOf="@id/a32"
+            app:layout_constraintTop_toBottomOf="@id/seekBarVolt" />
+
+        <TextView
+            android:id="@+id/a32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="32A"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/seekBarVolt"
+            app:layout_constraintLeft_toRightOf="@id/a25"
+            app:layout_constraintTop_toBottomOf="@id/seekBarVolt"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        />
+
+<!--    충전 시간 설정-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/TimeLayout"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="충전 시간 설정"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginLeft="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tvSetTime"
+            />
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seekBarTime"
+            android:layout_width="match_parent"
+            android:layout_height="23dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:max="6"
+            android:min="0"
+            android:progressDrawable="@drawable/seekbar_bar"
+            android:thumb="@drawable/seekbar_circle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSetTime"
+            />
+        <TextView
+            android:id="@+id/h1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1H"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/seekBarTime"
+            app:layout_constraintRight_toLeftOf="@id/h2"
+            app:layout_constraintStart_toStartOf="@+id/seekBarTime"
+            app:layout_constraintTop_toBottomOf="@id/seekBarTime"
+            android:layout_marginLeft="10dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2H"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekBarTime"
+            app:layout_constraintLeft_toRightOf="@id/h1"
+            app:layout_constraintRight_toLeftOf="@id/h3"
+            android:id="@+id/h2"/>
+
+        <TextView
+            android:id="@+id/h3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3H"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/h2"
+            app:layout_constraintRight_toLeftOf="@id/h4"
+            app:layout_constraintTop_toBottomOf="@id/seekBarTime" />
+
+        <TextView
+            android:id="@+id/h4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4H"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/h3"
+            app:layout_constraintRight_toLeftOf="@id/h5"
+            app:layout_constraintTop_toBottomOf="@id/seekBarTime" />
+        <TextView
+            android:id="@+id/h5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5H"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/h4"
+            app:layout_constraintRight_toLeftOf="@id/h6"
+            app:layout_constraintTop_toBottomOf="@id/seekBarTime" />
+
+        <TextView
+            android:id="@+id/h6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6H"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/h5"
+            app:layout_constraintRight_toLeftOf="@id/h7"
+            app:layout_constraintTop_toBottomOf="@id/seekBarTime" />
+
+        <TextView
+            android:id="@+id/h7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONT"
+            android:textColor="#555555"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/seekBarTime"
+            app:layout_constraintLeft_toRightOf="@id/h6"
+            app:layout_constraintTop_toBottomOf="@id/seekBarTime" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal"
+        android:id="@+id/setTimeLayout"
+        android:background="#ffffff"
+        >
+
+        <TextView
+            android:id="@+id/setTime"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="사용자 시간 설정"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="15dp"
+            />
+
+        <EditText
+            android:id="@+id/edtTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toRightOf="@id/setTime"
+            app:layout_constraintRight_toLeftOf="@id/tvTV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:inputType="number"
+            android:maxLength="2"
+            android:hint="1~99"
+            />
+        <TextView
+            android:id="@+id/tvTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="H"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            android:layout_marginRight="15dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        />
+
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="저장"
+        android:background="@drawable/button_back_blue_corner"
+        android:layout_margin="15dp"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        />
+</LinearLayout>

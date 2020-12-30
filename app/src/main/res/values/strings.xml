@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">FineEv</string>
+
+    <string name="smart_discover_version">v1.0</string>
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="label_data">Advertisement:</string>
+    <string name="label_device_name">Name:</string>
+    <string name="label_device_address">Address:</string>
+    <string name="label_state">State:</string>
+    <string name="no_data">No data</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="connecting">Connecting</string>
+    <string name="smart_discovrey_title_devices">BLE Devices</string>
+    <string name="title_control">Services and Characteristics</string>
+    <string name="title_characteristic">Characteristic</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+    <string name="error_bluetooth_off">Bluetooth is turned off. Turn Bluetooth on to use the app.</string>
+    <string name="ble_scan_empty">No BLE devices found. Click Scan button to try scanning again.</string>
+    <string name="service_empty">No BLE Services/Characteristics found!</string>
+
+
+    <string name="unknown_device">Unknown</string>
+    <string name="unknown_characteristic">Unknown</string>
+    <string name="unknown_service">Unknown Service</string>
+
+    <!-- Menu items -->
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_bond">Bond</string>
+    <string name="menu_unbond">UnBond</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+    <string name="title_activity_device_characteristic">DeviceCharacteristicActivity</string>
+
+
+    <string name="descriptor_notification_enabled">Notifications enabled</string>
+    <string name="descriptor_notification_disabled">Notifications disabled</string>
+    <string name="descriptor_indication_enabled">Indication enabled</string>
+    <string name="descriptor_indication_disabled">Indication disabled</string>
+    <string name="descriptor_reliablewrite_enabled">Reliable Write enabled</string>
+    <string name="descriptor_reliablewrite_disabled">Reliable Write disabled</string>
+    <string name="descriptor_writableauxillary_enabled">Writable Auxiliaries enabled</string>
+    <string name="descriptor_writableauxillary_disabled">Writable Auxiliaries disabled</string>
+    <string name="descriptor_broadcast_enabled">Broadcast enabled</string>
+    <string name="descriptor_broadcast_disabled">Broadcast disabled</string>
+
+    <string name="descriptor_bluetoothSIGAssignedNo">Bluetooth SIG Assigned Numbers</string>
+    <string name="descriptor_reservedforFutureUse">Reserved for future use</string>
+
+    <string name="descriptor_format">Format</string>
+    <string name="exponent">Exponent</string>
+    <string name="unit">Unit</string>
+    <string name="namespace">Namespace</string>
+    <string name="description">Description</string>
+
+    <string name="lower_inclusive_value">"Lower Inclusive Value"</string>
+    <string name="upper_inclusive_value">"Upper Inclusive Value"</string>
+</resources>
