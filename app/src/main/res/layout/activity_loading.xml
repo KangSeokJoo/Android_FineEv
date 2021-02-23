@@ -22,7 +22,7 @@
             android:layout_width="153dp"
             android:layout_height="wrap_content"
             android:textSize="18dp"
-            android:text="www.find-ev.com"
+            android:text="www.fine-ev.com"
             android:textColor="#ffffff"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

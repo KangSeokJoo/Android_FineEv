@@ -56,4 +56,6 @@
 
     <string name="lower_inclusive_value">"Lower Inclusive Value"</string>
     <string name="upper_inclusive_value">"Upper Inclusive Value"</string>
+
+    <string name="kakao_app_key">5a84a8935bd1e15ae20df23a2d361d02</string>
 </resources>

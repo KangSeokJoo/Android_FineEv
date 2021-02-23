@@ -183,7 +183,7 @@ public class BLEService extends Service {
                         public void run() {
                             connect(mBluetoothDeviceAddress, mBond);
                         }
-                    }, 1000);
+                    }, 500);
                 }
 
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) { // 해제됨

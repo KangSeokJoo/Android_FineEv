@@ -7,34 +7,41 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
+        android:name=".Login.Global"
         android:allowBackup="false"
         android:icon="@mipmap/icon_fine_ev"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/icon_fine_ev_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-            >
-        <activity android:name=".LoadingActivity"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Login.SignInActivity" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+
+        <activity android:name=".Login.LoginActivity" />
+        <activity
+            android:name=".LoadingActivity"
             android:screenOrientation="portrait">
-<!--                    <activity android:name=".ExportCSV.ExportCVS">-->
+
+            <!-- <activity android:name=".ExportCSV.ExportCVS"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,56 +52,69 @@
         <service
             android:name=".Bluetooth.BLEService"
             android:enabled="true" />
-        <service android:name=".Service.ForecdTerminationService"
-            android:stopWithTask="false"/>
+        <service
+            android:name=".Service.ForecdTerminationService"
+            android:stopWithTask="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.jinasoft.fineevapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true"
             tools:replace="android:authorities">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepath"
-                tools:replace="android:resource"/>
-
-
+                tools:replace="android:resource" />
         </provider>
 
-        <activity android:name=".DialogShare"
-            android:theme="@style/Theme.MyDialog"/>
-        <activity android:name=".Main.DialogShareDebug"
-            android:theme="@style/Theme.MyDialog"/>
-
+        <activity
+            android:name=".DialogShare"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".Main.DialogShareDebug"
+            android:theme="@style/Theme.MyDialog" />
         <activity android:name=".Bluetooth.ConnectSettingActivity2" />
+        <activity
+            android:name=".DebugModeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main.MainListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Bluetooth.ConnectSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SetCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Bluetooth.BleConnectDialog"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".Bluetooth.BleDisConnectDialog"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".Main.WebViewActivity"
+            android:screenOrientation="portrait" />
+<!--        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
 
-        <activity android:name=".DebugModeActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Main.MainListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Main.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".UserSettingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Bluetooth.ConnectSettingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SetCodeActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Bluetooth.BleConnectDialog"
-            android:theme="@style/Theme.MyDialog"/>
-
-        <activity android:name=".Bluetooth.BleDisConnectDialog"
-            android:theme="@style/Theme.MyDialog"/>
-
-        <activity android:name=".Main.WebViewActivity"
-            android:screenOrientation="portrait"/>
-
-
-        <!--        <activity android:name=".ExportCSV.ExportCVS"/>-->
+<!--                &lt;!&ndash; Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ &ndash;&gt;-->
+<!--                <data-->
+<!--                    android:host="oauth"-->
+<!--                    android:scheme="kakao{NATIVE_APP_KEY}://ouath" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>

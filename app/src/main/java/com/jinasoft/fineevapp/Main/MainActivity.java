@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
     Timer timer;
 
     boolean getDataState;
-
     String StateREQ;
 
     int DBinsert=0;
@@ -142,6 +141,8 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
 
     boolean ImageCheck = true;
 
+    boolean ischarging = false;
+
     TextView tvError;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
         tvError = findViewById(R.id.tvError);
 
         Full_Linear = findViewById(R.id.Full_Linear);
+
         Full_Linear.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -188,20 +190,29 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
 // 손가락을 왼쪽으로 움직였으면 오른쪽 화면이 나타나야 한다.
                     Intent intent = new Intent(mContext, UserSettingActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
-
+                    if(ischarging == false) {
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                    }else if (ischarging == true){
+                        Toast.makeText(mainActivity, "충전 중일 때는 설정화면으로 이동할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
 // 손가락을 오른쪽으로 움직였으면 왼쪽 화면이 나타나야 한다.
                     Intent intent = new Intent(mContext, UserSettingActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    if(ischarging == false) {
                     startActivity(intent);
                     overridePendingTransition(R.anim.right_in, R.anim.right_out);
+                    }else if (ischarging == true){
+                        Toast.makeText(mainActivity, "충전 중일 때는 설정화면으로 이동할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 return true;
             }
         });
+
+
 
 
         pref = getSharedPreferences("info",MODE_PRIVATE);
@@ -281,6 +292,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
                 public void run() {
                     ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_st00));
                     tvMainName.setText("연결이 해제되었습니다.");
+                    ischarging = false;
                     //디바이스 연결 해제시
                 }
 //        }, 600000);
@@ -303,7 +315,8 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
         IbtnFindWeb = findViewById(R.id.IbtnFindWeb);
         IbtnFindWeb.setOnClickListener(n->{
 //            ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-            sendData("S003","T800");
+//
+//            sendData("S003","T800");
 //            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.fine-ev.com"));
 //            startActivity(intent);
             Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
@@ -314,7 +327,12 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
         IbtnSetting.setOnClickListener(n->{
             Intent intent = new Intent(MainActivity.this, ConnectSettingActivity.class);
 //            Intent intent = new Intent(MainActivity.this, UserSettingActivity.class);
-            startActivity(intent);
+            if (ischarging == false){
+                startActivity(intent);
+            }else {
+                Toast.makeText(mainActivity, "충전 중일 때는 설정화면으로 이동할 수 없습니다.", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
 
@@ -558,7 +576,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
             data.setDate(day);
 
             String[] carTime = charging_time.get(i).replace(" ","").split(":");
@@ -782,6 +800,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
             } else if (BLEService.ACTION_GATT_DISCONNECTED.equals(action)) {
 
                 Toast.makeText(MainActivity.this, "연결이 해제되었습니다.", Toast.LENGTH_SHORT).show();
+                ischarging = false;
 //                btnLinkChk.setBackground(getResources().getDrawable(R.drawable.icon_unconnect));
 
                 Intent main = new Intent(MainActivity.this,MainActivity.class);
@@ -796,6 +815,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
                         ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_st00));
                         tvMainName.setText("연결이 해제되었습니다.");
                         ImageCheck = false;
+                        ischarging = false;
                     }
                 }
                 editor.putString("disconnect_check","1");
@@ -878,15 +898,18 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
                         String name = pref.getString("CarName", "");
                         ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_charge_end));
                         tvMainName.setText(name + " 충전 중입니다.");
+                        ischarging = true;
                     }else if (status.equals("S024") || status.equals("S124")) {
                         DBinsert =1;
                         tvMainName.setText("충전이 멈췄습니다.");
+                        ischarging = false;
                         ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_charge));
                     }else if (status.equals("S025") ||status.equals("S125") ) {
                         if(DBinsert!=0) {
                             DBinsert = 0;
                         }
                         tvMainName.setText("충전이 종료되었습니다.");
+                        ischarging = false;
                         ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_charge_done));
                     }
 
@@ -906,6 +929,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
                             if (intEnergy > Integer.parseInt(pref.getString("Battery", "64"))) {
                                 ImageChargeState.performClick();
                                 Toast.makeText(MainActivity.this, "충전이 종료되었습니다.", Toast.LENGTH_SHORT).show();
+                                ischarging = false;
                             }
 
                             Log.d("result",result);
@@ -1022,21 +1046,26 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
                                 }
                                 if (status.equals("S023") || status.equals("S123")) {                   //충전기 상태 코드에 따라 text 변경
                                     tvMainName.setText(name + " 충전 중입니다.");
+                                    ischarging = true;
                                 } else if (status.equals("S010") || status.equals("S110")) {
 //                                    tvMainName.setText("충전기 코드를 설정하세요.");
                                     ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_st01));
                                 } else if (status.equals("S020") || status.equals("S120")) {
                                     tvMainName.setText("충전 대기 중입니다.");
                                     ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_charge));
+                                    ischarging = false;
                                 } else if (status.equals("S001") || status.equals("S101")) {
                                     tvMainName.setText("차량에 충전기를 연결하세요.");
                                     ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_st01));
+                                    ischarging = false;
                                 } else if (status.equals("S024") || status.equals("S124")) {
                                     tvMainName.setText("충전이 멈췄습니다");
                                     ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_charge_wait));
+                                    ischarging = false;
                                 } else if (status.equals("S025") || status.equals("S125")) {
                                     tvMainName.setText("충전이 종료되었습니다.");
                                     ImageChargeState.setBackground(getResources().getDrawable(R.drawable.btn05_ble_done));
+                                    ischarging = false;
 
                                     InsertDataIntoDB();
                                     STCheck = 0 ;
@@ -1251,7 +1280,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
 
         if(BLEService.getBleService()!=null) {
             if (BLEService.getBleService().getConnectBLE()) {       //블루투스 상태 확인후 블루투스가 연결되어 있으면 데이터 전송
-                sendData(StateREQ, "T100");
+//                sendData(StateREQ, "T100");
 //                btnLinkChk.setBackground(getResources().getDrawable(R.drawable.icon_connect));
                 ImageChargeState.setBackground(getResources().getDrawable(R.drawable.ic_charge));
 

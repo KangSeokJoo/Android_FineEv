@@ -117,7 +117,7 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
             startActivity(intent);
         });
 
-        sendData();         //페이지 정보 전송
+//        sendData();         //페이지 정보 전송
     }
 
 
@@ -135,6 +135,7 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
 
     }
     public void sendData(){
+        Log.d("확인","몹시필요");
         if(BLEService.getBleService().getConnectBLE()) {
             String REQ = "S003";
 

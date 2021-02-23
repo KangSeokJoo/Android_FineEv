@@ -16,11 +16,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.jinasoft.fineevapp.Bluetooth.ConnectSettingActivity;
+import com.jinasoft.fineevapp.Login.LoginActivity;
+import com.jinasoft.fineevapp.Login.SessionCallback;
 import com.jinasoft.fineevapp.Main.MainActivity;
 
 
 public class LoadingActivity extends AppCompatActivity {
-
+    SessionCallback sessionCallback = new SessionCallback();
 
 
     Handler handler = new Handler();
@@ -28,9 +30,21 @@ public class LoadingActivity extends AppCompatActivity {
         @Override
         public void run() {
 //                Intent intent = new Intent(LoadingActivity.this, ConnectSettingActivity.class);
-            Intent intent = new Intent(LoadingActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(3000);
+                        Intent intent = new Intent(LoadingActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
+
         }
     };
 
@@ -38,6 +52,7 @@ public class LoadingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+        sessionCallback.requestMe();
 
     }
 
