@@ -1265,6 +1265,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
                 }
             } else {
                 tvMainName.setText("충전기 접속이 필요합니다.");
+
             }
         }catch (Exception e){
             e.printStackTrace();

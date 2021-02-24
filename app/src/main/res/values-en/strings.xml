@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
- <string name="app_name">FineEv</string>
- <string name="Email_None">이메일을 다시 확인해주세요.</string>
- <string name="Email_have">이미 가입된 이메일 입니다.
-  다시 입력해주세요.</string>
- <string name="Email_possible">가입이 가능한 이메일 입니다.</string>
- <string name="Email_check">"이메일 중복 체크를 해주세요."</string>
- <string name="Password_check">비밀번호를 다시 확인해주세요</string>
- <string name="Submit_Success">가입을 축하드립니다.</string>
+    <string name="app_name">FineEv</string>
+    <string name="Email_None">이메일을 다시 확인해주세요.</string>
+    <string name="Email_have">이미 가입된 이메일 입니다.
+ 다시 입력해주세요.</string>
+    <string name="Email_possible">가입이 가능한 이메일 입니다.</string>
+    <string name="Email_check">"이메일 중복 체크를 해주세요."</string>
+   <string name="Password_check">비밀번호를 다시 확인해주세요</string>
+   <string name="Submit_Success">가입을 축하드립니다.</string>
  <string name="NaverLoginSuccess">네이버 로그인에 성공했습니다.
-  잠시만 기다려주세요</string>
+ 잠시만 기다려주세요</string>
  <string name="KakaoLoginSuccess">카카오톡 로그인에 성공했습니다.
   잠시만 기다려려주세요</string>
  <string name="GoogleLoginSuccess">구글 로그인에 성공했습니다.</string>
@@ -18,7 +17,7 @@
     <string name="Password_Reset_BeforePail">비밀번호가 일치하지 않습니다.</string>
     <string name="Password_Reset_NewPass">새비밀번호를 확인해주세요.</string>
 
-    <string name="smart_discover_version">v1.0</string>
+ <string name="smart_discover_version">v1.0</string>
     <string name="ble_not_supported">BLE is not supported</string>
     <string name="label_data">Advertisement:</string>
     <string name="label_device_name">Name:</string>

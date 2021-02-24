@@ -58,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="이메일"
+            android:textColorHint="#ffffff"
             android:ems="10"
             android:inputType="textEmailAddress"/>
         <EditText
@@ -65,10 +66,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호"
+            android:textColorHint="#ffffff"
             android:ems="10"
             android:inputType="textPassword"/>
         <Button
-            android:id="@+id/Login_EmailLogin"
+            android:id="@+id/Login_BTNLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/main_blue"
@@ -87,6 +89,7 @@
             android:layout_gravity="center">
 
             <Button
+                android:id="@+id/Login_BTNPassReset"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:text="비밀번호 재설정"
@@ -96,6 +99,7 @@
                 android:textColor="#ffffff"
                 android:background="#00FFFFFF"/>
             <Button
+                android:id="@+id/Login_BTNSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:text="회원가입"

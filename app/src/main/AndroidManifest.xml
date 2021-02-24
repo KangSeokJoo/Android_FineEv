@@ -30,6 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Login.PasswordReset"></activity>
         <activity android:name=".Login.SignInActivity" />
 
         <meta-data
@@ -102,19 +103,6 @@
         <activity
             android:name=".Main.WebViewActivity"
             android:screenOrientation="portrait" />
-<!--        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.VIEW" />-->
-
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--                <category android:name="android.intent.category.BROWSABLE" />-->
-
-<!--                &lt;!&ndash; Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ &ndash;&gt;-->
-<!--                <data-->
-<!--                    android:host="oauth"-->
-<!--                    android:scheme="kakao{NATIVE_APP_KEY}://ouath" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
     </application>
 
 </manifest>
