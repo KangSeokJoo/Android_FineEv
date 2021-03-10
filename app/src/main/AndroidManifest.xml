@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jinasoft.fineevapp">
+    package="com.finetech.fineevapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -22,7 +22,6 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
-        android:name=".Login.Global"
         android:allowBackup="false"
         android:icon="@mipmap/icon_fine_ev"
         android:label="@string/app_name"
@@ -30,14 +29,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Login.PasswordReset"></activity>
-        <activity android:name=".Login.SignInActivity" />
+<!--        android:name=".Login.Global">-->
+<!--        <activity android:name=".Login.PasswordReset"></activity>-->
+<!--        <activity android:name=".Login.SignInActivity" />-->
 
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
+<!--        <meta-data-->
+<!--            android:name="com.kakao.sdk.AppKey"-->
+<!--            android:value="@string/kakao_app_key" />-->
 
-        <activity android:name=".Login.LoginActivity" />
+<!--        <activity android:name=".Login.LoginActivity" />-->
         <activity
             android:name=".LoadingActivity"
             android:screenOrientation="portrait">
@@ -59,7 +59,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.jinasoft.fineevapp.fileprovider"
+            android:authorities="com.finetech.fineevapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true"
             tools:replace="android:authorities">

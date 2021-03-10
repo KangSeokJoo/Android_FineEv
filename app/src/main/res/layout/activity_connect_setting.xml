@@ -264,7 +264,7 @@
                 android:textSize="18dp"
                 android:background="@drawable/button_back_navy"
                 android:onClick="clickWifiScan"
-                android:visibility="gone"
+                android:visibility="visible"
                 />
 <!--            <androidx.recyclerview.widget.RecyclerView-->
 <!--                android:id="@+id/ap_listView"-->
@@ -284,7 +284,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 />
 
 
@@ -299,17 +299,16 @@
                 android:textSize="18dp"
                 android:background="@drawable/button_back_navy2"
                 android:layout_marginBottom="5dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 />
             <TextView
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
                 android:textColor="#000000"
-                android:text="충전기를 사용할 수 있도록 CODE를 가져옵니다.\n\n[NFC 적용 충전기]\n사용자 카드가 있는 경우는 사용자 카드를 충전기에 태그하여 사용자 인증 코드를 가져올 수 있습니다.
-                \n\n[NFC 미적용 충전기]\n''CODE설정'' 버튼을 누른 후, 코드 입력창에 제품에 포함된 사용자 카드 앞면의 일련번호 22자리를 입력해주세요."
+                android:text="충전기를 사용할 수 있도록 CODE를 가져옵니다.\n공용 충전기는 사용자 카드가 필요합니다."
                 android:layout_marginBottom="30dp"
                 android:textSize="16dp"
                 />
