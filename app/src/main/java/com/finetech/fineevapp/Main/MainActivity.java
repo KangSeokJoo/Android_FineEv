@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
 
         IbtnFindWeb = findViewById(R.id.IbtnFindWeb);
         IbtnFindWeb.setOnClickListener(n->{
-//            ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+//            ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
 //
 //            sendData("S003","T800");
 //            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.fine-ev.com"));
@@ -835,7 +835,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
 //                ((Button) findViewById(R.id.characteristic_write_button)).setTextColor(Color.argb(0xFF, 0x00, 0x70, 0x00));
             } else if (BLEService.ACTION_DATA_AVAILABLE.equals(action)) {
                 result = intent.getStringExtra(BLEService.EXTRA_DATA);
-//                result="#0145R01FTEV28160245827E88BE59083D14A59220201223145301000000000000000000160018S123216.25+00.25000000000004038600C00020T0000M3200ER000V002RQ013145374D;";
+//                result="#0145R01FTEV28160245827E88BE59083D14A59220201223145301000000000000000000160018S123216.25+00.25000000000004038600C00020T0000M3200ER000V001RQ013145374D;";
 //                ((TextView) findViewById(R.id.characteristic_read)).setText(intent.getStringExtra(BLEService.EXTRA_DATA));
 //                Log.d("result",result);
 
@@ -964,13 +964,14 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
                                 if (hour > 24) {
                                     hour = hour - 12;
                                 }
-                                tvRightTimer.setText(hour + ":" + start.substring(10, 12));
+//                                tvRightTimer.setText(hour + ":" + start.substring(10, 12)); // 시간 -- : --로 표시
+
                             } else {
-                                int hour = (Integer.parseInt(start.substring(8, 10)) + Integer.parseInt(pref.getString("ChargingTime", "6")));
+                                int hour = (Integer.parseInt(start.substring(8, 10)) + Integer.parseInt(pref.getString("ChargingTime", "0")));
                                 if (hour > 24) {
                                     hour = hour - 12;
                                 }
-                                tvRightTimer.setText(hour + ":" + start.substring(10, 12));
+//                                tvRightTimer.setText(hour + ":" + start.substring(10, 12)); // 시간 -- : --로 표시
                             }
                             tvTimer.setText(elapse);
                             tvStateOfCharge.setText(energy2);
@@ -1435,9 +1436,9 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
 
                 term_id = pref.getString("term_id", "0000000000");
                 user_id = pref.getString("ChargerCode", "0000000000000000000000");
-//                    String full = "0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
-                String a = "0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+//                    String full = "0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
+                String a = "0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -1448,8 +1449,8 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
                 Log.d("C", String.valueOf(str16num));
 
 
-                ConnectSettingActivity.getCon().WriteBleData("#0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
-                Log.d("SendData","#0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+                ConnectSettingActivity.getCon().WriteBleData("#0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+                Log.d("SendData","#0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
 
 
             }
@@ -1509,7 +1510,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.MyRec
 //        byte[] value = {Byte.parseByte("00"), Byte.parseByte("00"), Byte.parseByte("00")};
 
         String start ="#";
-//        var = "#T100CM01FTEV0000100000000000000000000000V02S00220200917031223C32T0115M0100C6F43772;";
+//        var = "#T100CM01FTEV0000100000000000000000000000V01S00220200917031223C32T0115M0100C6F43772;";
         String end = ";";
         int length = var.length();
         String strLength = String.valueOf(length);
@@ -1658,9 +1659,9 @@ public void sendData(String REQ,String Tdata){          // 데이터 전송( 페
     term_id = pref.getString("term_id", "0000000000");
     user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
-//                    String full = "0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
-    String a = "0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+//                    String full = "0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
+    String a = "0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
     byte[] val = a.getBytes();
 
 //
@@ -1671,8 +1672,8 @@ public void sendData(String REQ,String Tdata){          // 데이터 전송( 페
     Log.d("C", String.valueOf(str16num));
 
 
-    ConnectSettingActivity.getCon().WriteBleData("#0084"+Tdata+"CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
-    Log.d("SendData","#0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+    ConnectSettingActivity.getCon().WriteBleData("#0084"+Tdata+"CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+    Log.d("SendData","#0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
 
 }
     ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {

@@ -291,8 +291,8 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
                 if (user_id == null) {
                     user_id = "0000000000000000000000";
                 }
-                String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+                String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -305,9 +305,9 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
                 term_id = pref.getString("term_id", "0000000000");
                 user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
-                ConnectSettingActivity2.getCon().WriteBleData("#0084T300CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+                ConnectSettingActivity2.getCon().WriteBleData("#0084T300CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
 
             }
         };
@@ -479,8 +479,8 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
                                         if (user_id == null) {
                                             user_id = "0000000000000000000000";
                                         }
-                                        String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+                                        String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
 
 
                                         byte[] val = a.getBytes();
@@ -495,9 +495,9 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
                                         term_id = pref.getString("term_id", "0000000000");
                                         user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
-                                        ConnectSettingActivity2.getCon().WriteBleData("#0084T210CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                                        Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                                        //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+                                        ConnectSettingActivity2.getCon().WriteBleData("#0084T210CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                                        Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                                        //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
 
                                     }
                                     editor.putString("CarName", edtCarName.getText().toString());
@@ -871,8 +871,8 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
             String MODE = "M0" + UserMode + FullMode + SmartMode;
 
 
-            String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+            String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
 
 
             byte[] val = a.getBytes();
@@ -887,9 +887,9 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
             term_id = pref.getString("term_id", "0000000000");
             user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
-            ConnectSettingActivity2.getCon().WriteBleData("#0084T210CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-            Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-            //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+            ConnectSettingActivity2.getCon().WriteBleData("#0084T210CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+            Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+            //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
 
         }
 
@@ -1273,7 +1273,7 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
 //        byte[] value = {Byte.parseByte("00"), Byte.parseByte("00"), Byte.parseByte("00")};
 
         String start = "#";
-//        var = "#T100CM01FTEV0000100000000000000000000000V02S00220200917031223C32T0115M0100C6F43772;";
+//        var = "#T100CM01FTEV0000100000000000000000000000V01S00220200917031223C32T0115M0100C6F43772;";
         String end = ";";
         int length = var.length();
         String strLength = String.valueOf(length);
@@ -1505,7 +1505,7 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
 
 
 
-            String a = "0102A310CM02" + term_id + user_id + "V02" + wifiName + wifiPassword;
+            String a = "0102A310CM02" + term_id + user_id + "V01" + wifiName + wifiPassword;
 
 
             byte[] val = a.getBytes();
@@ -1518,7 +1518,7 @@ public class ConnectSettingActivity2 extends AppCompatActivity implements AutoPe
             Log.d("C", String.valueOf(str16num));
 
 
-            ConnectSettingActivity2.getCon().WriteBleData("#0102A310CM02" + term_id + user_id + "V002" + wifiName + wifiPassword + str16num + ";");
+            ConnectSettingActivity2.getCon().WriteBleData("#0102A310CM02" + term_id + user_id + "V001" + wifiName + wifiPassword + str16num + ";");
         }catch(Exception e){
             e.printStackTrace();
         }

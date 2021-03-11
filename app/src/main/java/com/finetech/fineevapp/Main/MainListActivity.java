@@ -199,8 +199,8 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
             String MODE = "M0" + UserMode + FullMode + SmartMode;
 
 
-            String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+            String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
             byte[] val = a.getBytes();
 
 //
@@ -215,9 +215,9 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
             user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
 
-//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
-            ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-            Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+            ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+            Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
         }
     }
 
@@ -296,8 +296,8 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
 
 
 
-                String a = "0084T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+                String a = "0084T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -312,9 +312,9 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
                 user_id =pref.getString("user_id","0000000000000000000000");
 
 
-//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
-                ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
-                Log.d("SendData","#0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+                ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+                Log.d("SendData","#0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
 
             }
         };

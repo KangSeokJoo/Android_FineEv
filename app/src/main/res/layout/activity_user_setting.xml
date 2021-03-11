@@ -8,7 +8,6 @@
     android:background="@drawable/background"
     android:id="@+id/Full_Linear">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/actionbar_layout"
         android:layout_width="match_parent"
@@ -389,7 +388,7 @@
             android:layout_height="23dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:max="6"
+            android:max="7"
             android:min="0"
             android:progressDrawable="@drawable/seekbar_bar"
             android:thumb="@drawable/seekbar_circle"
@@ -485,6 +484,117 @@
             app:layout_constraintLeft_toRightOf="@id/h6"
             app:layout_constraintTop_toBottomOf="@id/seekBarTime" />
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        />
+    <!--          Full Mode-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/OverVoltageLayout"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="과전압 경고"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/OverVoltageTV2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/OverVoltageTV"
+            />
+
+        <TextView
+            android:id="@+id/OverVoltageTV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전압이 240V 이상일 때 경고 설정"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/OverVoltageTV"
+            app:layout_constraintTop_toBottomOf="@id/OverVoltageTV"
+            android:textColor="#555555"
+            />
+
+        <Switch
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="15dp"
+            android:id="@+id/OverValtageSW"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bdbdbd"
+        />
+    <!--          Full Mode-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/LowVoltageLayout"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저전압 경고"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/LowVoltageTV2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/LowVoltageTV"
+            />
+
+        <TextView
+            android:id="@+id/LowVoltageTV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전압이 207V 이하일 때 경고 설정"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/LowVoltageTV"
+            app:layout_constraintTop_toBottomOf="@id/LowVoltageTV"
+            android:textColor="#555555"
+            />
+
+        <Switch
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="15dp"
+            android:id="@+id/LowValtageSW"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

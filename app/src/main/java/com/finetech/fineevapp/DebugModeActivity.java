@@ -411,8 +411,8 @@ public class DebugModeActivity extends AppCompatActivity {
                 String MODE = "M0" + UserMode + FullMode + SmartMode;
 
 
-                String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+                String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -428,9 +428,9 @@ public class DebugModeActivity extends AppCompatActivity {
 
 
 //                CM01 -> B000 ~ B120
-//                B000~ B120 배터리 설정에서 설정한 값 불러오는거거//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
-                ConnectSettingActivity.getCon().WriteBleData("#0084T001CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+//                B000~ B120 배터리 설정에서 설정한 값 불러오는거거//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+                ConnectSettingActivity.getCon().WriteBleData("#0084T001CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
                 //태그
             }
         }
@@ -506,11 +506,11 @@ public class DebugModeActivity extends AppCompatActivity {
             }
 
 
-            String message = "#1020D001V02" + packCount + Data;
+            String message = "#1020D001V01" + packCount + Data;
 
           if(BLEService.getBleService().getConnectBLE()){
 
-              String a = "1020D001V02" + packCount + Data;
+              String a = "1020D001V01" + packCount + Data;
               byte[] val = a.getBytes();
               CalculationCRC32 crc2 = new CalculationCRC32();
               long c =0;

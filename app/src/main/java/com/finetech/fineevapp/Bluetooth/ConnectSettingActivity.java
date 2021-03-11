@@ -291,8 +291,8 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
                 if (user_id == null) {
                     user_id = "0000000000000000000000";
                 }
-                String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+                String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -305,9 +305,9 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
                 term_id = pref.getString("term_id", "0000000000");
                 user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
-                ConnectSettingActivity.getCon().WriteBleData("#0084T300CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+                ConnectSettingActivity.getCon().WriteBleData("#0084T300CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
 
             }
         };
@@ -436,13 +436,13 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
                                                 break;
                                         }
 
-                                        String time = pref.getString("ChargingTime", "6");
+                                        String time = pref.getString("ChargingTime", "0");
                                         if (time.equals("")) {
-                                            time = "6";
+                                            time = "0";
                                         }
                                         int Timer = Integer.parseInt(time);
 
-                                        String TIME = "T0600";
+                                        String TIME = "T0000";
                                         switch (Timer) {
                                             case 0:
                                                 TIME = "T0000";
@@ -465,6 +465,9 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
                                             case 6:
                                                 TIME = "T0500";
                                                 break;
+                                            case 7:
+                                                TIME = "T0600";
+                                                break;
                                         }
 
                                         String UserMode = pref.getString("UserMode", "0");
@@ -479,8 +482,8 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
                                         if (user_id == null) {
                                             user_id = "0000000000000000000000";
                                         }
-                                        String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                                      String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+                                        String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                                      String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
 
 
                                         byte[] val = a.getBytes();
@@ -495,9 +498,9 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
                                         term_id = pref.getString("term_id", "0000000000");
                                         user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
-                                        ConnectSettingActivity.getCon().WriteBleData("#0084T210CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                                        Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                                        //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+                                        ConnectSettingActivity.getCon().WriteBleData("#0084T210CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                                        Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                                        //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
 
                                     }
                                     editor.putString("CarName", edtCarName.getText().toString());
@@ -833,11 +836,11 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
 
             String time = pref.getString("ChargingTime", "6");
             if (time.equals("")) {
-                time = "6";
+                time = "0";
             }
             int Timer = Integer.parseInt(time);
 
-            String TIME = "T0600";
+            String TIME = "T0000";
             switch (Timer) {
                 case 0:
                     TIME = "T0000";
@@ -860,6 +863,9 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
                 case 6:
                     TIME = "T0500";
                     break;
+                case 7:
+                    TIME = "T0600";
+                    break;
             }
 
             String UserMode = pref.getString("UserMode", "0");
@@ -869,8 +875,8 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
             String MODE = "M0" + UserMode + FullMode + SmartMode;
 
 
-            String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+            String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
 
 
             byte[] val = a.getBytes();
@@ -885,9 +891,9 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
             term_id = pref.getString("term_id", "0000000000");
             user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
-            ConnectSettingActivity.getCon().WriteBleData("#0084T210CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-            Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-            //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+            ConnectSettingActivity.getCon().WriteBleData("#0084T210CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+            Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+            //                ConnectSettingActivity.getCon().WriteBleData("#T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
 
         }
 
@@ -1080,12 +1086,14 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
                             aDeviceName.clear();            //기기 목록을 한번 clear 해야함  , 안하면 같은 이름의 기기가 반복적으로 계속 추가됨
                             aDeviceAddress.clear();
                             Cursor cursor = ElecDataBase.getDbHelper().getDevice();
-                            if (cursor.moveToFirst()) {             //DB 에서 저장목록 가져오기
-                                do {
-                                    aDeviceAddress.add(cursor.getString(cursor.getColumnIndex("device_address")));
-                                    aDeviceName.add(cursor.getString(cursor.getColumnIndex("device_name")));
-                                } while (cursor.moveToNext());
-                            }
+                                if (!cursor.isFirst())
+                                cursor.moveToFirst();             //DB 에서 저장목록 가져오기
+                                while (cursor.isLast()){
+                                     cursor.moveToNext();
+                                     aDeviceAddress.add(cursor.getString(cursor.getColumnIndex("device_address")));
+                                     aDeviceName.add(cursor.getString(cursor.getColumnIndex("device_name")));
+                                 };
+
 
                             for (int i = 0; i < aDeviceAddress.size(); i++) {
                                 if (!allDeviceName.contains(aDeviceName.get(i))) {
@@ -1210,6 +1218,7 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
 
         if (MainActivity.getMain() != null) {
             super.onBackPressed();
+            finish();
         } else {
             //1번째 백버튼 클릭
             if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
@@ -1271,7 +1280,7 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
 //        byte[] value = {Byte.parseByte("00"), Byte.parseByte("00"), Byte.parseByte("00")};
 
         String start = "#";
-//        var = "#T100CM01FTEV000010000000000000 0000000000V02S00220200917031223C32T0115M0100C6F43772;";
+//        var = "#T100CM01FTEV000010000000000000 0000000000V01S00220200917031223C32T0115M0100C6F43772;";
         String end = ";";
         int length = var.length();
         String strLength = String.valueOf(length);
@@ -1504,7 +1513,7 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
 
 
 
-            String a = "0102A310CM02" + term_id + user_id + "V02" + wifiName + wifiPassword;
+            String a = "0102A310CM02" + term_id + user_id + "V01" + wifiName + wifiPassword;
             //태그
 
 
@@ -1518,7 +1527,7 @@ public class ConnectSettingActivity extends AppCompatActivity implements AutoPer
             Log.d("C", String.valueOf(str16num));
 
 
-            ConnectSettingActivity.getCon().WriteBleData("#0102A310CM02" + term_id + user_id + "V002" + wifiName + wifiPassword + str16num + ";");
+            ConnectSettingActivity.getCon().WriteBleData("#0102A310CM02" + term_id + user_id + "V001" + wifiName + wifiPassword + str16num + ";");
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -190,9 +190,9 @@ public class SetCodeActivity extends AppCompatActivity {
                         user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
 
-//                    String full = "0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
-                        String a = "0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+//                    String full = "0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
+                        String a = "0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                         byte[] val = a.getBytes();
 
 //
@@ -203,8 +203,8 @@ public class SetCodeActivity extends AppCompatActivity {
                         Log.d("C", String.valueOf(str16num));
 
 
-                        ConnectSettingActivity.getCon().WriteBleData("#0084T220CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                        Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                        ConnectSettingActivity.getCon().WriteBleData("#0084T220CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                        Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
                     }
 
 
@@ -300,9 +300,9 @@ public class SetCodeActivity extends AppCompatActivity {
                 if (user_id == null) {
                     user_id = "0000000000000000000000";
                 }
-//                    String full = "0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
-                String a = "0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+//                    String full = "0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
+                String a = "0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -317,8 +317,8 @@ public class SetCodeActivity extends AppCompatActivity {
                 user_id = pref.getString("ChargerCode", "0000000000000000000000");   //설정된 코드
 
 
-                ConnectSettingActivity.getCon().WriteBleData("#0084T220CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-                Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                ConnectSettingActivity.getCon().WriteBleData("#0084T220CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+                Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
             }
     }
 
@@ -409,9 +409,9 @@ public class SetCodeActivity extends AppCompatActivity {
                 if(user_id ==null){
                     user_id = "0000000000000000000000";
                 }
-//                    String full = "0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
-                String a = "0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+//                    String full = "0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;";
+                String a = "0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -426,8 +426,8 @@ public class SetCodeActivity extends AppCompatActivity {
                 user_id =pref.getString("user_id","0000000000000000000000");
 
 
-                ConnectSettingActivity.getCon().WriteBleData("#0084T220CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
-                Log.d("SendData","#0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+                ConnectSettingActivity.getCon().WriteBleData("#0084T220CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+                Log.d("SendData","#0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
 
 
             }

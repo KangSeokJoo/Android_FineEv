@@ -38,7 +38,7 @@ import static android.view.View.GONE;
 
 public class UserSettingActivity extends AppCompatActivity {
 
-    Switch SwitchUserMode,SwitchFullMode,SwitchSmartMode;
+    Switch SwitchUserMode,SwitchFullMode,SwitchSmartMode, SwitchOver,SwitchLow;
     SeekBar seekBarVolt,seekBarTime;
     LinearLayout IbtnSetting;
     Button btnSave;
@@ -105,9 +105,10 @@ public class UserSettingActivity extends AppCompatActivity {
         SeekBarVoltSetting();
         SeekBarTimeSetting();
         SwitchUserModeSetting();
+        FullModeLayout.setClickable(false);
         SwitchSmartMode.setClickable(false);
 
-        seekBarTime.setProgress(5);
+        seekBarTime.setProgress(7);
         seekBarTime.setEnabled(false);
         seekBarTime.setThumb(getResources().getDrawable(R.drawable.seekbar_circle_off));
         seekBarTime.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_bar_off));
@@ -125,78 +126,6 @@ public class UserSettingActivity extends AppCompatActivity {
         btnClose.setOnClickListener(n->{
 //            onBackPressed();
             finish();
-        });
-
-//        if(seekBarTime.getProgress()==6) {
-//            setTimeLayout.setVisibility(View.VISIBLE);
-//            edtTime.setText(pref.getString("ChargingTime", ""));
-//            edtTime.addTextChangedListener(new TextWatcher() {
-//                @Override
-//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//                }
-//
-//                @Override
-//                public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//                }
-//
-//                @Override
-//                public void afterTextChanged(Editable s) {
-//                    if(!edtTime.getText().toString().equals("")) {
-//                        editor.putString("ChargingTime", edtTime.getText().toString());
-//                        Save();
-//                    }
-//                }
-//            });
-//        }
-
-
-        Full_Linear = findViewById(R.id.Full_Linear);
-        Full_Linear.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                float distance = 0;
-
-                switch(event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-// 손가락을 touch 했을 떄 x 좌표값 저장
-                        pressedX = event.getX();
-                        return true;
-                    case MotionEvent.ACTION_UP:
-// 손가락을 떼었을 때 저장해놓은 x좌표와의 거리 비교
-                        distance = pressedX - event.getX();
-                        break;
-//                        return true;
-                }
-// 해당 거리가 100이 되지 않으면 이벤트 처리 하지 않는다.
-
-                Log.d("distance",String.valueOf(distance));
-                if (Math.abs(distance)< 50) {
-                    return false;
-                }
-                if (distance > 0) {
-
-// 손가락을 왼쪽으로 움직였으면 오른쪽 화면이 나타나야 한다.
-//                    Intent intent = new Intent(mContext, MainActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
-
-                    onBackpressedLeft();
-
-                } else {
-// 손가락을 오른쪽으로 움직였으면 왼쪽 화면이 나타나야 한다.
-//                    Intent intent = new Intent(mContext, MainActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.right_in, R.anim.right_out);
-                    onBackPressed();
-                }
-
-                return true;
-            }
         });
 
     }
@@ -262,8 +191,8 @@ public class UserSettingActivity extends AppCompatActivity {
                         break;
                 }
 
-                int Timer = Integer.parseInt(pref.getString("ChargingTime","6"));
-                String TIME = "T0600";
+                int Timer = Integer.parseInt(pref.getString("ChargingTime","0"));
+                String TIME = "T0000";
                 switch (Timer){
                     case 0:
                         TIME = "T0000";
@@ -286,6 +215,9 @@ public class UserSettingActivity extends AppCompatActivity {
                     case 6:
                         TIME = "T0500";
                         break;
+                    case 7:
+                        TIME = "T0600";
+                        break;
                 }
 
                 String UserMode = pref.getString("UserMode","0");
@@ -301,8 +233,8 @@ public class UserSettingActivity extends AppCompatActivity {
                     user_id = "0000000000000000000000";
                 }
 
-                String a = "0084T200CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+                String a = "0084T200CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -315,9 +247,9 @@ public class UserSettingActivity extends AppCompatActivity {
                 term_id = pref.getString("term_id","0000000000");
                 user_id =pref.getString("user_id","0000000000000000000000");
 
-                ConnectSettingActivity.getCon().WriteBleData("#0084T200CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
-                Log.d("SendData","#0084T300CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
-//                ConnectSettingActivity.getCon().WriteBleData("#T200CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+                ConnectSettingActivity.getCon().WriteBleData("#0084T200CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+                Log.d("SendData","#0084T300CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+//                ConnectSettingActivity.getCon().WriteBleData("#T200CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
 
             }
         };
@@ -384,7 +316,7 @@ public class UserSettingActivity extends AppCompatActivity {
 
 
             setTimeLayout.setVisibility(GONE);
-            editor.putString("ChargingTime", "5");
+            editor.putString("ChargingTime", "0");
             editor.commit();
             Save();
 //            seekBarTime.setThumb(getResources().getDrawable(R.drawable.seekbar_circle_off));
@@ -428,7 +360,7 @@ public class UserSettingActivity extends AppCompatActivity {
                     seekBarVolt.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_bar));
                     seekBarVolt.setProgress(5);
                     setTimeLayout.setVisibility(GONE);
-                    editor.putString("ChargingTime", "5");
+                    editor.putString("ChargingTime", "0");
                     editor.commit();
                     Save();
                 }else{
@@ -457,7 +389,7 @@ public class UserSettingActivity extends AppCompatActivity {
                     seekBarVolt.setEnabled(false);
                     seekBarVolt.setProgress(5);
                     setTimeLayout.setVisibility(GONE);
-                    editor.putString("ChargingTime", "5");
+                    editor.putString("ChargingTime", "0");
                     editor.commit();
                     Save();
 //                    seekBarTime.setThumb(getResources().getDrawable(R.drawable.seekbar_circle_off));
@@ -600,11 +532,11 @@ public class UserSettingActivity extends AppCompatActivity {
 //                    SwitchSmartMode.setThumbDrawable(getResources().getDrawable(R.drawable.switch_thumb_on));
                     SwitchFullMode.setChecked(false);
                     seekBarTime.setEnabled(false);
-                    seekBarTime.setProgress(5);
+                    seekBarTime.setProgress(7);
                     seekBarVolt.setEnabled(false);
                     seekBarVolt.setProgress(5);
                     setTimeLayout.setVisibility(GONE);
-                    editor.putString("ChargingTime", "5");
+                    editor.putString("ChargingTime", "0");
                     editor.commit();
                     Save();
                     seekBarTime.setThumb(getResources().getDrawable(R.drawable.seekbar_circle_off));
@@ -623,16 +555,16 @@ public class UserSettingActivity extends AppCompatActivity {
                         tvSetTime.setTextColor(Color.parseColor("#000000"));
                         tvSetVolt.setTextColor(Color.parseColor("#000000"));
                         editor.putString("Mode","Normal");
-                        seekBarTime.setEnabled(true);
+                        seekBarTime.setEnabled(false);
                         seekBarTime.setThumb(getResources().getDrawable(R.drawable.seekbar_circle));
                         seekBarTime.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_bar));
-                        seekBarTime.setProgress(5);
+                        seekBarTime.setProgress(7);
                         seekBarVolt.setEnabled(true);
                         seekBarVolt.setThumb(getResources().getDrawable(R.drawable.seekbar_circle));
                         seekBarVolt.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_bar));
                         seekBarVolt.setProgress(5);
                         setTimeLayout.setVisibility(GONE);
-                        editor.putString("ChargingTime", "5");
+                        editor.putString("ChargingTime", "0");
                         editor.commit();
                         Save();
                     }else{
@@ -673,9 +605,9 @@ public class UserSettingActivity extends AppCompatActivity {
         });
     }
     public void SeekBarTimeSetting(){
-        String time = pref.getString("ChargingTime", "6");
+        String time = pref.getString("ChargingTime", "0");
         if(time.equals("")){
-            time = "6";
+            time = "0";
         }
         int intTime = Integer.parseInt(time);
 
@@ -693,7 +625,7 @@ public class UserSettingActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if(seekBarTime.getProgress()==6){
+                if(seekBarTime.getProgress()==0){
 
                     setTimeLayout.setVisibility(View.VISIBLE);
                     edtTime.setText(pref.getString("ChargingTime",""));
@@ -882,8 +814,8 @@ public void Save(){
             user_id = "0000000000000000000000";
         }
 
-        String a = "0084T200CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
+        String a = "0084T200CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
         byte[] val = a.getBytes();
 
 //
@@ -896,9 +828,9 @@ public void Save(){
         term_id = pref.getString("term_id", "0000000000");
         user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
-        ConnectSettingActivity.getCon().WriteBleData("#0084T200CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-        Log.d("SendData", "#0084T200CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-//                ConnectSettingActivity.getCon().WriteBleData("#T200CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+        ConnectSettingActivity.getCon().WriteBleData("#0084T200CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+        Log.d("SendData", "#0084T200CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+//                ConnectSettingActivity.getCon().WriteBleData("#T200CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
     }
 
 

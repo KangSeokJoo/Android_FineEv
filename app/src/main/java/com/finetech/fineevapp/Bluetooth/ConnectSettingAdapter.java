@@ -113,11 +113,11 @@ class ConnectSettingAdapter extends RecyclerView.Adapter<ConnectSettingAdapter.I
         TextView deviceName2;
         ImageView conState;
         TextView deviceDelete;
-        LinearLayout PasswordLayout;
+//        LinearLayout PasswordLayout;
         LinearLayout MainLayout;
-        Button btnConnect;
+//        Button btnConnect;
 
-        EditText edtPassword;
+//        EditText edtPassword;
 
 
         static ArrayList<String> aDeviceName = new ArrayList<>();
@@ -140,10 +140,10 @@ class ConnectSettingAdapter extends RecyclerView.Adapter<ConnectSettingAdapter.I
            deviceName2 = view.findViewById(R.id.bleName);
            conState = view.findViewById(R.id.idLinked);
            deviceDelete = view.findViewById(R.id.tvDel);
-           PasswordLayout = view.findViewById(R.id.passwordLayout);
+//           PasswordLayout = view.findViewById(R.id.passwordLayout);
            MainLayout = view.findViewById(R.id.MainLayout);
-           btnConnect = view.findViewById(R.id.btnConnect);
-           edtPassword = view.findViewById(R.id.edtPassword);
+//           btnConnect = view.findViewById(R.id.btnConnect);
+//           edtPassword = view.findViewById(R.id.edtPassword);
 
 
         }
@@ -187,17 +187,17 @@ class ConnectSettingAdapter extends RecyclerView.Adapter<ConnectSettingAdapter.I
 
             MainLayout.setOnClickListener(n->{
                 if(mScanDeviceName.contains(deviceName) || mScanDeviceArray.contains(deviceName)) {
-                    if(c == 0 ){
-                        if(BLEService.getBleService().getConnectionState(deviceAddress)){
-
-                        }else {
-                            PasswordLayout.setVisibility(View.VISIBLE);
-                        }
-                        c=1;
-                    }else{
-                        PasswordLayout.setVisibility(View.GONE);
-                        c=0;
-                    }
+//                    if(c == 0 ){
+//                        if(BLEService.getBleService().getConnectionState(deviceAddress)){
+//
+//                        }else {
+//                            PasswordLayout.setVisibility(View.VISIBLE);
+//                        }
+//                        c=1;
+//                    }else{
+//                        PasswordLayout.setVisibility(View.GONE);
+//                        c=0;
+//                    }
                 }else{
                     Toast.makeText(context, "주변에 없는 충전기입니다.", Toast.LENGTH_SHORT).show();
                 }
@@ -256,17 +256,27 @@ class ConnectSettingAdapter extends RecyclerView.Adapter<ConnectSettingAdapter.I
 //                    deviceDelete.setText("삭제");
 
                     if(mScanDeviceName.contains(deviceName) || mScanDeviceArray.contains(deviceName)) {
-                        if(c == 0 ){
-                            if(BLEService.getBleService().getConnectionState(deviceAddress)){
+//                        if(c == 0 ){
+//                            if(BLEService.getBleService().getConnectionState(deviceAddress)){
 
-                            }else {
-                                PasswordLayout.setVisibility(View.VISIBLE);
-                            }
-                            c=1;
-                        }else{
-                            PasswordLayout.setVisibility(View.GONE);
-                            c=0;
+//                            }else {
+//                                PasswordLayout.setVisibility(View.VISIBLE);
+
+//                            c=1;
+//                        }else{
+//                            PasswordLayout.setVisibility(View.GONE);
+//                            c=0;
+//                        }
+
+                        if (!BLEService.getBleService().getConnectBLE()) {
+                            ConnectSettingActivity.getCon().startActivityConnect(deviceName, deviceAddress);
+//                            PasswordLayout.setVisibility(View.GONE);
+                        } else {
+                            Toast.makeText(context, "이미 연결된 충전기가 있습니다", Toast.LENGTH_SHORT).show();
+//                            PasswordLayout.setVisibility(View.GONE);
                         }
+                        //비밀번호 없이
+
                     }else{
                         Toast.makeText(context, "주변에 없는 충전기입니다.", Toast.LENGTH_SHORT).show();
                     }
@@ -276,32 +286,31 @@ class ConnectSettingAdapter extends RecyclerView.Adapter<ConnectSettingAdapter.I
             });
 
 
-            btnConnect.setOnClickListener(n->{
+//            btnConnect.setOnClickListener(n->{
+//
+//                if(edtPassword.getText().toString().equals("1234")){
+//                if (!BLEService.getBleService().getConnectBLE()) {
+//
+//                    ConnectSettingActivity.getCon().startActivityConnect(deviceName, deviceAddress);
+//                    PasswordLayout.setVisibility(View.GONE);
+//
+//                } else {
+//                    Toast.makeText(context, "이미 연결된 충전기가 있습니다", Toast.LENGTH_SHORT).show();
+//                    PasswordLayout.setVisibility(View.GONE);
+//
+//                }
+//                }else{
+//                    Toast.makeText(context, "비밀번호가 올바르지 않습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            });
 
-                if(edtPassword.getText().toString().equals("1234")){
-                if (!BLEService.getBleService().getConnectBLE()) {
 
-                    ConnectSettingActivity.getCon().startActivityConnect(deviceName, deviceAddress);
-                    PasswordLayout.setVisibility(View.GONE);
-
-                } else {
-                    Toast.makeText(context, "이미 연결된 충전기가 있습니다", Toast.LENGTH_SHORT).show();
-                    PasswordLayout.setVisibility(View.GONE);
-
-                }
-                }else{
-                    Toast.makeText(context, "비밀번호가 올바르지 않습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
-                }
-
-            });
-
-
-            if(data.getVisible() ==true){
-                PasswordLayout.setVisibility(View.VISIBLE);
-            }else{
-                PasswordLayout.setVisibility(View.GONE);
-            }
-
+//            if(data.getVisible() ==true){
+//                PasswordLayout.setVisibility(View.VISIBLE);
+//            }else{
+//                PasswordLayout.setVisibility(View.GONE);
+//            }
         }
     }
 
@@ -349,6 +358,4 @@ class ConnectSettingAdapter extends RecyclerView.Adapter<ConnectSettingAdapter.I
         public ArrayList<String> getmScanDeviceAddress(){return mScanDeviceAddress;}
         public boolean getVisible(){return setVisible;}
     }
-
-
 }
