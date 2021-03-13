@@ -3,8 +3,10 @@ package com.finetech.fineevapp.Main;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,10 +21,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.finetech.fineevapp.Bluetooth.BLEService;
 import com.finetech.fineevapp.Bluetooth.ConnectSettingActivity;
 import com.finetech.fineevapp.DialogShare;
-import com.finetech.fineevapp.ElecDataBase.ElecDataBase;
 import com.finetech.fineevapp.R;
 import com.finetech.fineevapp.UserSettingActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,19 +45,22 @@ import java.util.TimerTask;
 public class MainListActivity extends AppCompatActivity implements MainListAdapter.MyRecyclerViewClickListener,MainListAdapter.MyRecyclerViewLongClickListener {
 
     //메인 액티비티에서 충전 목록 리스트를 클릭했을때 보여지는 full 리스트 액티비티
+    String logintype,email,username,term_id,user_id;                       //로그인 타입, 이메일,닉네임,충전기,사용자ID
+    ArrayList<String> charging_dateArray = new ArrayList<>();              //충전날짜
+    ArrayList<String> charging_total_amount  = new ArrayList<>();          //총 충전량
+    ArrayList<String> charging_amount  = new ArrayList<>();                //현재 충전량
+    ArrayList<String> setting_mode  = new ArrayList<>();                   //설정모드
+    ArrayList<String> charging_start_time  = new ArrayList<>();            //충전 시작 시간
+    ArrayList<String> charging_time  = new ArrayList<>();                  //충전한 시간
+    ArrayList<String> charging_end_time  = new ArrayList<>();              //충전 종료 시간
+    ArrayList<String> distance  = new ArrayList<>();                       //이동가능거리
+    ArrayList<String> volt  = new ArrayList<>();                           //전압
+    ArrayList<String> electric_current  = new ArrayList<>();               //전류
+    ArrayList<String> power = new ArrayList();                             //전력
+    ArrayList<String> tempArray  = new ArrayList<>();                      //온도
+    ArrayList<String> status = new ArrayList<>();                          //상태
+    ArrayList<String> error = new ArrayList<>();                           //에러
 
-    ArrayList<String> charging_dateArray = new ArrayList<>();
-    ArrayList<String> charging_total_amount  = new ArrayList<>();
-    ArrayList<String> charging_amount  = new ArrayList<>();
-    ArrayList<String> setting_mode  = new ArrayList<>();
-    ArrayList<String> charging_start_time  = new ArrayList<>();
-    ArrayList<String> charging_time  = new ArrayList<>();
-    ArrayList<String> charging_end_time  = new ArrayList<>();
-    ArrayList<String> distance  = new ArrayList<>();
-    ArrayList<String> contact_pressure  = new ArrayList<>();
-    ArrayList<String> electric_current  = new ArrayList<>();
-    ArrayList<String> tempArray  = new ArrayList<>();
-    ArrayList<String> efficiency = new ArrayList<>();
 
     MainListAdapter adapter;
 
@@ -59,7 +73,7 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    String term_id,user_id;
+
     boolean getDataState;
 
 
@@ -100,8 +114,18 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
         getDataState = get.getBooleanExtra("getDataState",true);
         tvCarInfo = findViewById(R.id.tvCarInfo);
         tvCarInfo.setText(carInfo);
+        AddItemToAdapter task = new AddItemToAdapter();
+        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "http://20.194.57.6/fineev/Insert_Charging_Info.php",
+                logintype, email, username, term_id, user_id,
+                charging_dateArray.get(charging_dateArray.size()-1), charging_total_amount.get(charging_total_amount.size()-1),
+                charging_amount.get(charging_amount.size()-1),    setting_mode.get(setting_mode.size()-1),
+                charging_start_time.get(charging_start_time.size()-1),charging_time.get(charging_time.size()-1),
+                charging_end_time.get(charging_end_time.size()-1),  distance.get(distance.size()-1),
+                volt.get(volt.size()-1),               electric_current.get(electric_current.size()-1),
+                power.get(power.size()-1),              tempArray.get(tempArray.size()-1),
+                status.get(status.size()-1),             error.get(error.size()-1) );
 
-        AddItemToAdapter();
+//        20.194.57.6 지나 애저서버
 
         btnShare = findViewById(R.id.btnShare);
         btnShare.setOnClickListener(n->{
@@ -166,8 +190,8 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
                     break;
             }
 
-            int Timer = Integer.parseInt(pref.getString("ChargingTime", "6"));
-            String TIME = "T0600";
+            int Timer = Integer.parseInt(pref.getString("ChargingTime", "0"));
+            String TIME = "T0000";
             switch (Timer) {
                 case 0:
                     TIME = "T0000";
@@ -199,8 +223,8 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
             String MODE = "M0" + UserMode + FullMode + SmartMode;
 
 
-            String a = "0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
+            String a = "0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
             byte[] val = a.getBytes();
 
 //
@@ -215,9 +239,9 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
             user_id = pref.getString("ChargerCode", "0000000000000000000000");
 
 
-//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
-            ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
-            Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V01" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+            ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
+            Log.d("SendData", "#0084T100CM01" + term_id + user_id + "V02" + REQ + DATE + CURRENT + TIME + MODE + str16num + ";");
         }
     }
 
@@ -296,8 +320,8 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
 
 
 
-                String a = "0084T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE;
-//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V012S00120200920081708C032T0152M0100";
+                String a = "0084T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE;
+//                    String a ="0084T100CM01FTEV00000145827E88BE59083D14A59V022S00120200920081708C032T0152M0100";
                 byte[] val = a.getBytes();
 
 //
@@ -312,9 +336,9 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
                 user_id =pref.getString("user_id","0000000000000000000000");
 
 
-//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
-                ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
-                Log.d("SendData","#0084T100CM01"+term_id+user_id+"V01"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+//                ConnectSettingActivity.getCon().WriteBleData("#T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+"C6F43772;");
+                ConnectSettingActivity.getCon().WriteBleData("#0084T400CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
+                Log.d("SendData","#0084T100CM01"+term_id+user_id+"V02"+REQ+DATE+CURRENT+TIME+MODE+str16num+";");
 
             }
         };
@@ -323,91 +347,251 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
 
 
 
-    public void AddItemToAdapter(){
+//    public void AddItemToAdapter(){
+//
+//        charging_dateArray.clear();
+//        charging_total_amount.clear();
+//        charging_amount.clear();
+//        setting_mode.clear();
+//        charging_start_time.clear();
+//        charging_time.clear();
+//        charging_end_time.clear();
+//        distance.clear();
+//        contact_pressure.clear();
+//        electric_current.clear();
+//        efficiency.clear();
+//        tempArray.clear();
+//        adapter.clearAlltems();
+//
+//
+//        Cursor cursor = ElecDataBase.getDbHelper().getDataBase();
+//        if (cursor.moveToFirst()) {
+//            do {
+//                charging_dateArray.add(cursor.getString(cursor.getColumnIndex("charging_date")));
+//                charging_total_amount.add(cursor.getString(cursor.getColumnIndex("charging_total_amount")));
+//                charging_amount.add(cursor.getString(cursor.getColumnIndex("charging_amount")));
+//                setting_mode  .add(cursor.getString(cursor.getColumnIndex("setting_mode")));
+//                charging_start_time  .add(cursor.getString(cursor.getColumnIndex("charging_start_time")));
+//                charging_time  .add(cursor.getString(cursor.getColumnIndex("charging_time")));
+//                charging_end_time  .add(cursor.getString(cursor.getColumnIndex("charging_end_time")));
+//                distance .add(cursor.getString(cursor.getColumnIndex("distance")));
+//                contact_pressure  .add(cursor.getString(cursor.getColumnIndex("contact_pressure")));
+//                electric_current .add(cursor.getString(cursor.getColumnIndex("electric_current")));
+//                efficiency.add(cursor.getString(cursor.getColumnIndex("efficiency")));
+//
+//                tempArray.add(cursor.getString(cursor.getColumnIndex("car_temp")));
+//            }while (cursor.moveToNext());
+//        }
+//
+//
+//        Collections.reverse(charging_dateArray);
+//        Collections.reverse(charging_total_amount);
+//        Collections.reverse(charging_amount);
+//        Collections.reverse(setting_mode);
+//        Collections.reverse(charging_start_time);
+//        Collections.reverse(charging_time);
+//        Collections.reverse(charging_end_time);
+//        Collections.reverse(distance);
+//        Collections.reverse(contact_pressure);
+//        Collections.reverse(electric_current);
+//        Collections.reverse(efficiency);
+//        Collections.reverse(tempArray);
+//
+//        for(int i =0; i<charging_dateArray.size(); i++) {
+//            MainListAdapter.DataList data = new MainListAdapter.DataList();
+//            String day = "";
+//            try {
+//                day = getDateDay(charging_dateArray.get(i),"yyyyMMdd");
+//                Log.d("day",day);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//            data.setDate(day);
+//
+//            String[] carTime = charging_time.get(i).replace(" ","").split(":");
+//            data.setUseTime(carTime[0]+"h " +carTime[1]+"m");
+//
+//            data.setPower(charging_amount.get(i));
+//            data.setBatteryState("2");
+//            data.setCharge(charging_amount.get(i));
+//
+//            String battery = pref.getString("Battery","160");
+//            data.setMode(setting_mode.get(i) +"/"+battery);
+//            String a = charging_start_time.get(i).substring(3,5);
+//            data.setStartTime(charging_start_time.get(i).substring(0,2)+" : "+a);
+//
+//            data.setChargingTime(carTime[0]+"시간 " +carTime[1]+"분");
+//
+//            data.setFinishTime(charging_end_time.get(i).substring(0,2)+" : "+charging_end_time.get(i).substring(3,5));
+//            data.setMileage(distance.get(i));
+//            data.setV(contact_pressure.get(i));
+//            data.setA(electric_current.get(i));
+//            data.setC(tempArray.get(i));
+//            data.setSetVisible(false);
+//
+//            adapter.addItem(data);
+//            adapter.notifyDataSetChanged();
+//        }
+//    }
 
-        charging_dateArray.clear();
-        charging_total_amount.clear();
-        charging_amount.clear();
-        setting_mode.clear();
-        charging_start_time.clear();
-        charging_time.clear();
-        charging_end_time.clear();
-        distance.clear();
-        contact_pressure.clear();
-        electric_current.clear();
-        efficiency.clear();
-        tempArray.clear();
-        adapter.clearAlltems();
+    public class AddItemToAdapter extends AsyncTask<String, Void, String> {
 
 
-        Cursor cursor = ElecDataBase.getDbHelper().getDataBase();
-        if (cursor.moveToFirst()) {
-            do {
-                charging_dateArray.add(cursor.getString(cursor.getColumnIndex("charging_date")));
-                charging_total_amount.add(cursor.getString(cursor.getColumnIndex("charging_total_amount")));
-                charging_amount.add(cursor.getString(cursor.getColumnIndex("charging_amount")));
-                setting_mode  .add(cursor.getString(cursor.getColumnIndex("setting_mode")));
-                charging_start_time  .add(cursor.getString(cursor.getColumnIndex("charging_start_time")));
-                charging_time  .add(cursor.getString(cursor.getColumnIndex("charging_time")));
-                charging_end_time  .add(cursor.getString(cursor.getColumnIndex("charging_end_time")));
-                distance .add(cursor.getString(cursor.getColumnIndex("distance")));
-                contact_pressure  .add(cursor.getString(cursor.getColumnIndex("contact_pressure")));
-                electric_current .add(cursor.getString(cursor.getColumnIndex("electric_current")));
-                efficiency.add(cursor.getString(cursor.getColumnIndex("efficiency")));
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
-                tempArray.add(cursor.getString(cursor.getColumnIndex("car_temp")));
-            }while (cursor.moveToNext());
+
         }
 
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
 
-        Collections.reverse(charging_dateArray);
-        Collections.reverse(charging_total_amount);
-        Collections.reverse(charging_amount);
-        Collections.reverse(setting_mode);
-        Collections.reverse(charging_start_time);
-        Collections.reverse(charging_time);
-        Collections.reverse(charging_end_time);
-        Collections.reverse(distance);
-        Collections.reverse(contact_pressure);
-        Collections.reverse(electric_current);
-        Collections.reverse(efficiency);
-        Collections.reverse(tempArray);
 
-        for(int i =0; i<charging_dateArray.size(); i++) {
-            MainListAdapter.DataList data = new MainListAdapter.DataList();
-            String day = "";
             try {
-                day = getDateDay(charging_dateArray.get(i),"yyyyMMdd");
-                Log.d("day",day);
-            } catch (Exception e) {
+
+                JSONObject obj = new JSONObject(result);
+                String sRES = obj.getString("Response");
+                if (sRES.equals("Success")){
+//                   서버에 값 집어넣고나서 이벤트
+                }
+                /*겟타입 한정
+//                for (int i = 0; i < jsonArray.length(); i++) {
+//                    JSONObject subJsonObject = jsonArray.getJSONObject(i);
+
+//                    String LoginType = subJsonObject.getString("login_type");
+//                    String Email = subJsonObject.getString("email");
+//                    String UserName = subJsonObject.getString("user_name");
+//                    String TermId = subJsonObject.getString("term_id");
+//                    String UserId = subJsonObject.getString("user_id");
+//                    String ChargingDate = subJsonObject.getString("charging_date");
+//                    String ChargingTotal = subJsonObject.getString("charging_total_amount");
+//                    String Energy = subJsonObject.getString("energy");
+//                    String SettingMode = subJsonObject.getString("setting_mode");
+//                    String StartTime = subJsonObject.getString("charging_start_time");
+//                    String ChargingTime = subJsonObject.getString("charging_time");
+//                    String EndTime = subJsonObject.getString("charging_end_tme");
+//                    String Distance = subJsonObject.getString("distance");
+//                    String Volt = subJsonObject.getString("volt");
+//                    String Current = subJsonObject.getString("current");
+//                    String Power = subJsonObject.getString("power");
+//                    String Temp = subJsonObject.getString("temp");
+//                    String Status = subJsonObject.getString("status");
+//                    String Error = subJsonObject.getString("error");
+
+
+//                    SharedPreferences pref = getSharedPreferences("DataList",MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = pref.edit();
+//                    editor.putString("LoginType", LoginType);
+//                    editor.putString("Email", Email);
+//                    editor.putString("UserName", UserName);
+//                    editor.putString("TermId", TermId);
+//                    editor.putString("UserId", UserId);
+
+//                    charging_dateArray.add(ChargingDate);
+//                    charging_total_amount.add(ChargingTotal);
+//                    charging_amount.add(Energy);
+//                    setting_mode.add(SettingMode);
+//                    charging_start_time.add(StartTime);
+//                    charging_time.add(ChargingTime);
+//                    charging_end_time.add(EndTime);
+//                    distance.add(Distance);
+//                    volt.add(Volt);
+//                    electric_current.add(Current);
+//                    power.add(Power);
+//                    tempArray.add(Temp);
+//                    status.add(Status);
+//                    error.add(Error);
+
+//                }
+//
+//                Collections.reverse(charging_dateArray);
+//                Collections.reverse(charging_total_amount);
+//                Collections.reverse(charging_amount);
+//                Collections.reverse(setting_mode);
+//                Collections.reverse(charging_start_time);
+//                Collections.reverse(charging_time);
+//                Collections.reverse(charging_end_time);
+//                Collections.reverse(distance);
+//                Collections.reverse(volt);
+//                Collections.reverse(electric_current);
+//                Collections.reverse(power);
+//                Collections.reverse(tempArray);
+//                Collections.reverse(status);
+                Collections.reverse(error);*/
+
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            data.setDate(day);
+        }
 
-            String[] carTime = charging_time.get(i).replace(" ","").split(":");
-            data.setUseTime(carTime[0]+"h " +carTime[1]+"m");
 
-            data.setPower(charging_amount.get(i));
-            data.setBatteryState("2");
-            data.setCharge(charging_amount.get(i));
+        @Override
+        protected String doInBackground(String... params) {
 
-            String battery = pref.getString("Battery","160");
-            data.setMode(setting_mode.get(i) +"/"+battery);
-            String a = charging_start_time.get(i).substring(3,5);
-            data.setStartTime(charging_start_time.get(i).substring(0,2)+" : "+a);
+            String[] value = {"login_type", "email", "user_name", "term_id", "user_id", "charging_date", "charging_total_amount", "energy", "setting_mode", "charging_start_time", "charging_time", "charging_end_time", "distance", "volt", "current", "power", "temp", "status", "error"};
+            String Parameter = "";
 
-            data.setChargingTime(carTime[0]+"시간 " +carTime[1]+"분");
+            for (int i = 0; i < 19; i++) {
+                Parameter += value[i] + "=" + (String)params[i+1] + "&";
+            }
 
-            data.setFinishTime(charging_end_time.get(i).substring(0,2)+" : "+charging_end_time.get(i).substring(3,5));
-            data.setMileage(distance.get(i));
-            data.setV(contact_pressure.get(i));
-            data.setA(electric_current.get(i));
-            data.setC(tempArray.get(i));
-            data.setSetVisible(false);
+            Parameter = Parameter.substring(0, Parameter.length()-1);
+            try {
 
-            adapter.addItem(data);
-            adapter.notifyDataSetChanged();
+                URL url = new URL("http://20.194.57.6/fineev/Insert_Charging_Info.php");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(Parameter.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+
+                return new String("Error: " + e.getMessage());
+            }
+
         }
     }
 
@@ -494,7 +678,7 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
 
             data.setFinishTime(charging_end_time.get(i).substring(0,2)+" : "+charging_end_time.get(i).substring(3,5));
             data.setMileage(distance.get(i)+"km");
-            data.setV(contact_pressure.get(i));
+            data.setV(volt.get(i));
             data.setA(electric_current.get(i));
             data.setC(tempArray.get(i));
             if(i==position) {
@@ -604,7 +788,7 @@ public class MainListActivity extends AppCompatActivity implements MainListAdapt
 
             adapter.removeData(position);
             adapter.notifyDataSetChanged();
-            ElecDataBase.getDbHelper().DeleteDataBase(charging_dateArray.get(position),charging_time.get(position));
+//            ElecDataBase.getDbHelper().DeleteDataBase(charging_dateArray.get(position),charging_time.get(position)); 서버에서 처리
 
 
 //            AlertDialog.Builder builder = new AlertDialog.Builder(MainListActivity.this);

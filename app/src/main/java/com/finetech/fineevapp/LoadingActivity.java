@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 //import com.finetech.fineevapp.Login.SessionCallback;
 //import com.nhn.android.naverlogin.OAuthLogin;
 //import com.nhn.android.naverlogin.data.OAuthLoginState;
+import com.finetech.fineevapp.Bluetooth.ConnectSettingActivity;
 import com.finetech.fineevapp.Main.MainActivity;
 
 public class LoadingActivity extends AppCompatActivity {
@@ -26,8 +27,10 @@ public class LoadingActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-//                Intent intent = new Intent(LoadingActivity.this, ConnectSettingActivity.class);   태그2 ~~
-            new Thread(new Runnable() {
+
+//            Intent intent = new Intent(LoadingActivity.this, ConnectSettingActivity.class);
+
+            new Thread(new Runnable() { //태그2 ~~
                 @Override
                 public void run() {
                     try {

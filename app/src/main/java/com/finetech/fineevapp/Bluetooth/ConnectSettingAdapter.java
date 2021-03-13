@@ -154,7 +154,7 @@ class ConnectSettingAdapter extends RecyclerView.Adapter<ConnectSettingAdapter.I
             final String deviceAddress= data.getDevice_Address();
             aDeviceName = data.getDbDeviceName();
             mScanDeviceName = data.getScanDeviceName();
-            nScanDeviceAddress= data.getmScanDeviceAddress();
+//            nScanDeviceAddress= data.getmScanDeviceAddress();
 
             if (deviceName != null && deviceName.length() > 0) {
                deviceName1.setText("충전기"+(getAdapterPosition()+1));

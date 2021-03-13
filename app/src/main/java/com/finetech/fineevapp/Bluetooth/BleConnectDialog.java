@@ -113,9 +113,9 @@ public class BleConnectDialog extends AppCompatActivity {
 
 //                updateConnectionState(R.string.connected);
 //                invalidateOptionsMenu();
-            } else if (com.finetech.fineevapp.Bluetooth.BLEService.ACTION_GATT_BONDED.equals(action)) {    //기기가 페어리됨
-//                updateConnectionState(R.string.disconnected);
-//                invalidateOptionsMenu();
+//            } else if (com.finetech.fineevapp.Bluetooth.BLEService.ACTION_GATT_BONDED.equals(action)) {    //기기가 페어리됨
+////                updateConnectionState(R.string.disconnected);
+////                invalidateOptionsMenu();
 
             } else if (com.finetech.fineevapp.Bluetooth.BLEService.ACTION_GATT_DISCONNECTED.equals(action)) {  //기기 연결이 해제됨
                 skipIndex = 0;
