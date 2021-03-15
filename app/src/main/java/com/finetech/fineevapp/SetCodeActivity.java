@@ -154,8 +154,8 @@ public class SetCodeActivity extends AppCompatActivity {
                                 break;
                         }
 
-                        int Timer = Integer.parseInt(pref.getString("ChargingTime", "6"));
-                        String TIME = "T0600";
+                        int Timer = Integer.parseInt(pref.getString("ChargingTime", "0"));
+                        String TIME = "T0000";
                         switch (Timer) {
                             case 0:
                                 TIME = "T0000";
@@ -262,8 +262,8 @@ public class SetCodeActivity extends AppCompatActivity {
                         break;
                 }
 
-                int Timer = Integer.parseInt(pref.getString("ChargingTime", "6"));
-                String TIME = "T0600";
+                int Timer = Integer.parseInt(pref.getString("ChargingTime", "0"));
+                String TIME = "T0000";
                 switch (Timer) {
                     case 0:
                         TIME = "T0000";
@@ -371,8 +371,8 @@ public class SetCodeActivity extends AppCompatActivity {
                         break;
                 }
 
-                int Timer = Integer.parseInt(pref.getString("ChargingTime","6"));
-                String TIME = "T0600";
+                int Timer = Integer.parseInt(pref.getString("ChargingTime","0"));
+                String TIME = "T0000";
                 switch (Timer){
                     case 0:
                         TIME = "T0000";

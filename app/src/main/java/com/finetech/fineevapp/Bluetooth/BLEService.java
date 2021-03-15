@@ -223,7 +223,7 @@ public class BLEService extends Service {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                Log.d("result",str);
+                Log.e("result",str);
 
             }
         }

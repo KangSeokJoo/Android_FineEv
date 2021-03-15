@@ -464,7 +464,7 @@ public class UserSettingActivity extends AppCompatActivity {
                     seekBarVolt.setEnabled(false);
                     seekBarVolt.setProgress(5);
                     setTimeLayout.setVisibility(GONE);
-                    editor.putString("ChargingTime", "5");
+                    editor.putString("ChargingTime", "0");
                     editor.commit();
                     Save();
 //                    seekBarTime.setThumb(getResources().getDrawable(R.drawable.seekbar_circle_off));
@@ -489,7 +489,7 @@ public class UserSettingActivity extends AppCompatActivity {
                         seekBarVolt.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_bar));
                         seekBarVolt.setProgress(5);
                         setTimeLayout.setVisibility(GONE);
-                        editor.putString("ChargingTime", "5");
+                        editor.putString("ChargingTime", "0");
                         editor.commit();
                         Save();
 
